@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>جهاز مكافحة المخدرات والمؤثرات العقلية</title>
+  <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap)" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sky-deep:    #0a2342;
+      --sky-dark:    #1a3a5c;
+      --sky-mid:     #1e6091;
+      --sky-bright:  #2980b9;
+      --sky-light:   #5dade2;
+      --sky-pale:    #aed6f1;
+      --sky-white:   #ebf5fb;
+      --accent:      #f0c040;
+      --white:       #ffffff;
+      --shadow:      rgba(10,35,66,0.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--sky-white);
+      color: var(--sky-deep);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(10,35,66,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--sky-light);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: .75rem;
+    }
+
+    .nav-logo {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--sky-light), var(--sky-bright));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: #fff;
+      box-shadow: 0 0 12px rgba(93,173,226,.5);
+    }
+
+    .nav-title { color: #fff; font-size: 1rem; font-weight: 700; line-height: 1.3; }
+
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+
+    .nav-links a {
+      color: var(--sky-pale);
+      text-decoration: none;
+      font-size: .9rem; font-weight: 600;
+      transition: color .3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(160deg, var(--sky-deep) 0%, var(--sky-mid) 50%, var(--sky-bright) 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      position: relative; overflow: hidden;
+      padding: 6rem 1.5rem 4rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(93,173,226,.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 70%, rgba(41,128,185,.3) 0%, transparent 55%);
+    }
+
+    .hero-circles span {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(93,173,226,.2);
+      animation: pulse 6s ease-in-out infinite;
+    }
+    .hero-circles span:nth-child(1) { width: 300px; height: 300px; top: 10%; left: -5%;  animation-delay: 0s; }
+    .hero-circles span:nth-child(2) { width: 500px; height: 500px; bottom: -10%; right: -8%; animation-delay: 2s; }
+    .hero-circles span:nth-child(3) { width: 200px; height: 200px; top: 60%; left: 15%; animation-delay: 4s; }
+
+    @keyframes pulse {
+      0%,100% { transform: scale(1); opacity:.4; }
+      50%      { transform: scale(1.08); opacity:.8; }
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 780px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      color: var(--sky-pale);
+      padding: .4rem 1.2rem;
+      border-radius: 50px;
+      font-size: .85rem; font-weight: 600;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero h1 {
+      color: #fff;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,.3);
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero p {
+      color: var(--sky-pale);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 580px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--sky-light), var(--sky-bright));
+      color: #fff;
+      border: none; padding: .85rem 2rem;
+      border-radius: 50px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(41,128,185,.5);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(41,128,185,.7); }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.5);
+      padding: .85rem 2rem;
+      border-radius: 50px; font-size: 1rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      transition: background .3s, border-color .3s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+
+    /* ─── STATS BAR ──────────────────────────────── */
+    .stats-bar {
+      background: linear-gradient(135deg, var(--sky-dark), var(--sky-mid));
+      padding: 2.5rem 1.5rem;
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem;
+      border-bottom: 3px solid var(--sky-light);
+    }
+
+    .stat-item { text-align: center; color: #fff; min-width: 120px; }
+    .stat-item .number { font-size: 2.2rem; font-weight: 900; color: var(--accent); display: block; }
+    .stat-item .label  { font-size: .85rem; color: var(--sky-pale); margin-top: .2rem; }
+
+    /* ─── SECTION SHARED ─────────────────────────── */
+    section { padding: 5rem 1.5rem; }
+
+    .section-header { text-align: center; margin-bottom: 3rem; }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--sky-pale);
+      color: var(--sky-mid);
+      font-size: .8rem; font-weight: 700;
+      padding: .3rem 1rem; border-radius: 50px;
+      margin-bottom: .75rem; letter-spacing: .05em;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 900; color: var(--sky-deep);
+    }
+
+    .section-header p {
+      color: var(--sky-mid);
+      margin-top: .6rem; font-size: 1rem; line-height: 1.7;
+    }
+
+    .divider {
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, var(--sky-bright), var(--sky-light));
+      border-radius: 2px; margin: 1rem auto 0;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────── */
+    #about { background: #fff; }
+
+    .about-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center;
+    }
+
+    .about-visual {
+      background: linear-gradient(135deg, var(--sky-deep), var(--sky-mid));
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 15px 40px var(--shadow);
+      position: relative; overflow: hidden;
+    }
+
+    .about-visual::before {
+      content: '';
+      position: absolute; top: -40px; left: -40px;
+      width: 180px; height: 180px;
+      background: rgba(93,173,226,.15);
+      border-radius: 50%;
+    }
+
+    .about-icon { font-size: 5rem; margin-bottom: 1rem; position: relative; }
+
+    .about-visual h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: .5rem; }
+    .about-visual p  { color: var(--sky-pale); font-size: .9rem; line-height: 1.7; }
+
+    .about-text h3 { font-size: 1.5rem; font-weight: 800; color: var(--sky-deep); margin-bottom: 1rem; }
+    .about-text p  { color: #555; line-height: 1.9; margin-bottom: 1rem; font-size: .97rem; }
+
+    .value-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+
+    .value-list li {
+      display: flex; align-items: flex-start; gap: .6rem;
+      color: var(--sky-dark); font-size: .95rem;
+    }
+
+    .value-list li::before {
+      content: '✦';
+      color: var(--sky-bright); font-size: .8rem; margin-top: .2rem; flex-shrink: 0;
+    }
+
+    /* ─── SERVICES ───────────────────────────────── */
+    #services { background: var(--sky-white); }
+
+    .services-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(10,35,66,.08);
+      border: 1px solid var(--sky-pale);
+      transition: transform .3s, box-shadow .3s;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 40px rgba(10,35,66,.15);
+    }
+
+    .service-icon {
+      width: 70px; height: 70px;
+      background: linear-gradient(135deg, var(--sky-pale), var(--sky-light));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin: 0 auto 1.2rem;
+      box-shadow: 0 4px 14px rgba(93,173,226,.35);
+    }
+
+    .service-card h3 { font-size: 1.05rem; font-weight: 800; color: var(--sky-deep); margin-bottom: .6rem; }
+    .service-card p  { color: #666; font-size: .88rem; line-height: 1.75; }
+
+    /* ─── AWARENESS ──────────────────────────────── */
+    #awareness {
+      background: linear-gradient(160deg, var(--sky-deep) 0%, var(--sky-mid) 100%);
+      color: #fff;
+    }
+
+    #awareness .section-header h2 { color: #fff; }
+    #awareness .section-header p  { color: var(--sky-pale); }
+    #awareness .section-tag { background: rgba(255,255,255,.15); color: var(--sky-pale); }
+    #awareness .divider { background: linear-gradient(90deg, var(--sky-pale), var(--sky-light)); }
+
+    .awareness-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 1.5rem;
+    }
+
+    .awareness-card {
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      transition: background .3s;
+    }
+    .awareness-card:hover { background: rgba(255,255,255,.18); }
+
+    .awareness-card .num {
+      font-size: 2.5rem; font-weight: 900;
+      color: var(--accent);
+      display: block; margin-bottom: .4rem;
+    }
+
+    .awareness-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .awareness-card p  { color: var(--sky-pale); font-size: .87rem; line-height: 1.7; }
+
+    /* ─── REPORT ─────────────────────────────────── */
+    #report { background: #fff; }
+
+    .report-container {
+      max-width: 680px; margin: 0 auto;
+      background: linear-gradient(135deg, var(--sky-deep), var(--sky-mid));
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 20px 60px var(--shadow);
+      position: relative; overflow: hidden;
+    }
+
+    .report-container::after {
+      content: '';
+      position: absolute; bottom: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: rgba(93,173,226,.15); border-radius: 50%;
+    }
+
+    .report-container h3 { font-size: 1.6rem; font-weight: 900; margin-bottom: .8rem; }
+    .report-container p  { color: var(--sky-pale); line-height: 1.8; margin-bottom: 1.8rem; font-size: .97rem; }
+
+    .hotline {
+      background: rgba(255,255,255,.12);
+      border: 2px solid rgba(255,255,255,.3);
+      border-radius: 14px;
+      padding: 1.2rem;
+      margin-bottom: 1.8rem;
+      position: relative; z-index: 1;
+    }
+
+    .hotline .hotline-num {
+      font-size: 2.5rem; font-weight: 900;
+      color: var(--accent);
+      display: block; line-height: 1;
+      letter-spacing: .05em;
+    }
+
+    .hotline span { color: var(--sky-pale); font-size: .85rem; margin-top: .3rem; display: block; }
+
+    .report-container .btn-primary { position: relative; z-index: 1; }
+
+    /* ─── CONTACT ────────────────────────────────── */
+    #contact { background: var(--sky-white); }
+
+    .contact-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2.5rem; align-items: start;
+    }
+
+    .contact-info h3 { font-size: 1.3rem; font-weight: 800; color: var(--sky-deep); margin-bottom: 1.2rem; }
+
+    .contact-item {
+      display: flex; align-items: flex-start; gap: .9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--sky-bright), var(--sky-light));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: #fff;
+      box-shadow: 0 4px 12px rgba(41,128,185,.3);
+    }
+
+    .contact-item h4 { font-size: .85rem; color: var(--sky-mid); margin-bottom: .2rem; }
+    .contact-item p  { font-size: .95rem; color: var(--sky-deep); font-weight: 600; }
+
+    .contact-form { background: #fff; border-radius: 18px; padding: 2rem; box-shadow: 0 4px 24px rgba(10,35,66,.1); border: 1px solid var(--sky-pale); }
+
+    .form-group { margin-bottom: 1.1rem; }
+
+    .form-group label { display: block; font-size: .85rem; font-weight: 700; color: var(--sky-dark); margin-bottom: .4rem; }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 1.5px solid var(--sky-pale);
+      border-radius: 10px;
+      font-family: 'Cairo', sans-serif;
+      font-size: .9rem;
+      color: var(--sky-deep);
+      background: var(--sky-white);
+      transition: border-color .3s, box-shadow .3s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--sky-bright);
+      box-shadow: 0 0 0 3px rgba(41,128,185,.15);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      width: 100%;
+      padding: .9rem;
+      background: linear-gradient(135deg, var(--sky-bright), var(--sky-light));
+      color: #fff;
+      border: none; border-radius: 10px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(41,128,185,.4);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(41,128,185,.6); }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--sky-deep);
+      color: var(--sky-pale);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      border-top: 3px solid var(--sky-mid);
+    }
+
+    footer .footer-logo { font-size: 1.5rem; font-weight: 900; color: #fff; margin-bottom: .5rem; }
+    footer p { font-size: .85rem; line-height: 1.8; }
+    footer .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin: 1rem 0; }
+    footer .footer-links a { color: var(--sky-pale); text-decoration: none; font-size: .85rem; transition: color .3s; }
+    footer .footer-links a:hover { color: var(--accent); }
+    footer .copyright { color: var(--sky-mid); font-size: .8rem; margin-top: .8rem; }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid  { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">🛡️</div>
+    <div class="nav-title">جهاز مكافحة المخدرات<br>والمؤثرات العقلية</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">من نحن</a></li>
+    <li><a href="#services">خدماتنا</a></li>
+    <li><a href="#awareness">التوعية</a></li>
+    <li><a href="#report">الإبلاغ</a></li>
+    <li><a href="#contact">تواصل معنا</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ══════════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-circles">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🛡️ &nbsp;حماية المجتمع — أولويتنا الأولى</div>
+    <h1>جهاز مكافحة <span>المخدرات</span><br>والمؤثرات العقلية</h1>
+    <p>نعمل بلا هوادة على حماية الأفراد والمجتمع من آفة المخدرات، من خلال الوقاية والرقابة والتوعية وإنفاذ القانون.</p>
+    <div class="hero-btns">
+      <a href="#report" class="btn-primary">📞 أبلغ الآن</a>
+      <a href="#services" class="btn-outline">اكتشف خدماتنا</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS BAR ══════════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="number">+٥٠٠٠</span><div class="label">قضية تمت معالجتها</div></div>
+  <div class="stat-item"><span class="number">٢٤/٧</span><div class="label">خط إبلاغ مستمر</div></div>
+  <div class="stat-item"><span class="number">+١٢٠</span><div class="label">برنامج توعوي</div></div>
+  <div class="stat-item"><span class="number">+٣٠</span><div class="label">سنة من الخبرة</div></div>
+</div>
+
+<!-- ═══ ABOUT ══════════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-tag">من نحن</span>
+    <h2>جهازنا ومهمتنا</h2>
+    <p>نحن الجهة الرسمية المعنية بمكافحة المخدرات والمؤثرات العقلية وحماية المجتمع.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-icon">🏛️</div>
+      <h3>الجهاز الوطني للمكافحة</h3>
+      <p>جهاز حكومي متخصص يضم كوادر وطنية مدربة تعمل على الصعيدين الأمني والتوعوي لحماية المجتمع من مخاطر المخدرات.</p>
+    </div>
+    <div class="about-text">
+      <h3>رسالتنا وأهدافنا</h3>
+      <p>يسعى الجهاز إلى بناء مجتمع خالٍ من المخدرات والمؤثرات العقلية من خلال منظومة متكاملة تجمع بين الوقاية والعلاج والإنفاذ القانوني، بالشراكة مع مختلف القطاعات الحكومية والأهلية.</p>
+      <p>نؤمن بأن الوقاية خير من العلاج، لذا نولي اهتماماً بالغاً بالتوعية في المدارس والجامعات والمجتمعات المحلية.</p>
+      <ul class="value-list">
+        <li>الشفافية والمصداقية في التعامل مع الجمهور</li>
+        <li>الشراكة مع الأسرة والمجتمع لتعزيز الوقاية</li>
+        <li>توفير بيئات علاجية آمنة وإنسانية</li>
+        <li>التطوير المستمر للكوادر البشرية والتقنية</li>
+        <li>التعاون الدولي لقطع طرق التهريب</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══════════════════════════════════════════════════════ -->
+<section id="services">
+  <div class="section-header">
+    <span class="section-tag">خدماتنا</span>
+    <h2>ما نقدمه لحماية المجتمع</h2>
+    <p>منظومة شاملة من الخدمات الأمنية والعلاجية والتوعوية.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <h3>الرصد والتحقيق</h3>
+      <p>متابعة مستمرة وتحقيقات دقيقة لكشف شبكات تهريب المخدرات وملاحقتها قضائياً.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎓</div>
+      <h3>التوعية والتثقيف</h3>
+      <p>برامج توعوية في المدارس والجامعات والمجتمعات لتحصين الأجيال ضد الإدمان.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💊</div>
+      <h3>العلاج وإعادة التأهيل</h3>
+      <p>إحالة المدمنين إلى مراكز علاجية متخصصة ودعمهم في مسيرة التعافي والاندماج المجتمعي.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>الإبلاغ والشكاوى</h3>
+      <p>قنوات سرية وآمنة لتلقي البلاغات والشكاوى وضمان المتابعة الفورية والسرية التامة.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <h3>الشراكات المؤسسية</h3>
+      <p>تعاون فاعل مع الجهات الحكومية والمنظمات الدولية لتعزيز جهود المكافحة.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>البحث والإحصاء</h3>
+      <p>إعداد التقارير والدراسات الميدانية لرصد الظاهرة وتقييم فعالية برامج المكافحة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AWARENESS ═════════════════════════════════════════════════════ -->
+<section id="awareness">
+  <div class="section-header">
+    <span class="section-tag">التوعية</span>
+    <h2>لماذا الوقاية مهمة؟</h2>
+    <p>أرقام وحقائق تؤكد أهمية التوعية المبكرة في مواجهة الإدمان.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="awareness-grid">
+    <div class="awareness-card">
+      <span class="num">٨٥٪</span>
+      <h4>تأثير الوقاية المبكرة</h4>
+      <p>من حالات الإدمان يمكن تجنبها بالتوعية المبكرة قبل سن الثامنة عشرة.</p>
+    </div>
+    <div class="awareness-card">
+      <span class="num">٣×</span>
+      <h4>العلاج مقابل الإنفاق</h4>
+      <p>كل ريال ينفق على الوقاية يوفر ثلاثة أضعافه في تكاليف العلاج والتأهيل.</p>
+    </div>
+    <div class="awareness-card">
+      <span class="num">٩٠٪</span>
+      <h4>دور الأسرة</h4>
+      <p>من الحالات الناجحة في التعافي كان للأسرة دور محوري في دعم عملية العلاج.</p>
+    </div>
+    <div class="awareness-card">
+      <span class="num">٧٢ ساعة</span>
+      <h4>سرعة الاستجابة</h4>
+      <p>هو متوسط زمن استجابتنا لمتابعة البلاغات الواردة ومعالجتها ميدانياً.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REPORT ═════════════════════════════════════════════════════════ -->
+<section id="report">
+  <div class="section-header">
+    <span class="section-tag">الإبلاغ</span>
+    <h2>أبلغ بسرية تامة</h2>
+    <p>بلاغك قد ينقذ حياة. نضمن لك السرية الكاملة وعدم الكشف عن هويتك.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="report-container">
+    <h3>🆘 خط الإبلاغ الفوري</h3>
+    <p>متاح على مدار الساعة طوال أيام الأسبوع. جميع البلاغات تُعامل بسرية مطلقة وتُحال فوراً للجهات المختصة.</p>
+    <div class="hotline">
+      <span class="hotline-num">800 XXX XXXX</span>
+      <span>متاح ٢٤/٧ · مجاني · سري</span>
+    </div>
+    <a href="tel:800XXXXXXX" class="btn-primary">📞 اتصل الآن</a>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-tag">تواصل معنا</span>
+    <h2>نحن هنا لمساعدتك</h2>
+    <p>تواصل معنا عبر أي من القنوات التالية أو أرسل رسالتك مباشرة.</p>
+    <div class="divider"></div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>معلومات التواصل</h3>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h4>العنوان</h4>
+          <p>المقر الرئيسي — شارع الاستقلال، العاصمة</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h4>هاتف</h4>
+          <p>800 XXX XXXX</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <h4>البريد الإلكتروني</h4>
+          <p>info@anti-drugs.gov</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🕐</div>
+        <div>
+          <h4>ساعات العمل</h4>
+          <p>الأحد – الخميس: ٨ص – ٤م</p>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label>الاسم الكامل</label>
+        <input type="text" placeholder="أدخل اسمك الكامل"/>
+      </div>
+      <div class="form-group">
+        <label>رقم الهاتف</label>
+        <input type="tel" placeholder="+966 5XX XXX XXXX"/>
+      </div>
+      <div class="form-group">
+        <label>البريد الإلكتروني</label>
+        <input type="email" placeholder="example@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>رسالتك</label>
+        <textarea placeholder="اكتب رسالتك هنا..."></textarea>
+      </div>
+      <button class="form-submit">إرسال الرسالة ✉️</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">🛡️ جهاز مكافحة المخدرات والمؤثرات العقلية</div>
+  <div class="footer-links">
+    <a href="#home">الرئيسية</a>
+    <a href="#about">من نحن</a>
+    <a href="#services">الخدمات</a>
+    <a href="#awareness">التوعية</a>
+    <a href="#report">الإبلاغ</a>
+    <a href="#contact">اتصل بنا</a>
+  </div>
+  <p>نعمل من أجل مجتمع آمن وصحي خالٍ من المخدرات</p>
+  <div class="copyright">© 2026 جميع الحقوق محفوظة — جهاز مكافحة المخدرات والمؤثرات العقلية</div>
+</footer>
+
+</body>
+</html>
